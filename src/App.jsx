@@ -362,49 +362,7 @@ export default function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <div className="wrap foot-top">
-          <div className="foot-about">
-            <Logo />
-            <p>
-              For over 20 years, VSRP has delivered engineered rubber solutions built around the unique requirements
-              of Australian businesses.
-            </p>
-            <div className="social">
-              {["◎", "f", "in", "x"].map((s) => (
-                <span key={s}>{s}</span>
-              ))}
-            </div>
-          </div>
-          <div>
-            <h4>COMPANY</h4>
-            {["About", "Case Studies", "Blogs", "Contact"].map((l) => (
-              <a key={l} href={`#${l.toLowerCase()}`}>
-                {l}
-              </a>
-            ))}
-          </div>
-          <div>
-            <h4>INDUSTRIES</h4>
-            {INDUSTRIES.map((l) => (
-              <a key={l} href="#industries">
-                {l}
-              </a>
-            ))}
-          </div>
-          <div>
-            <h4>CONTACT</h4>
-            <a href="tel:1800787777">1800 787 777</a>
-            <a href="mailto:enquiries@vsrp.com.au">enquiries@vsrp.com.au</a>
-            <h4 style={{ marginTop: 20 }}>LOCATION</h4>
-            <a href="https://maps.google.com" target="_blank" rel="noreferrer">
-              Unit 3, 10 Banksia Place, South Windsor NSW 2756
-            </a>
-          </div>
-        </div>
-        <div className="wrap foot-bottom">
-          <span>COPYRIGHT © 2026 VSRP</span>
-          <span>PRIVACY POLICY · ALL RIGHTS RESERVED</span>
-        </div>
+        <img src="/images/footer.png" alt="Footer" />
       </footer>
     </div>
   );

@@ -132,7 +132,8 @@
 .ins-cap p{color:#6b6b6b; font-size:13px;}
 
 /* footer */
-.footer{background:#0c0c0c; color:#fff; padding-top:80px;}
+.footer{background:#0c0c0c; color:#fff; padding:0; line-height:0;}
+.footer img{width:100%; height:auto; display:block;}
 .foot-top{display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:40px; padding-bottom:56px; border-bottom:1px solid #262626;}
 @media(max-width:860px){.foot-top{grid-template-columns:1fr 1fr;}}
 .foot-top h4{color:#e8531f; font-size:13px; letter-spacing:.06em; margin-bottom:16px;}
