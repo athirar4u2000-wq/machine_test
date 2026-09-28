@@ -65,10 +65,10 @@ const INSIGHTS = [
 ];
 
 const STATS = [
-  { value: "20+", label: "Years of experience" },
-  { value: "122K+", label: "Ventilation tube joins" },
-  { value: "5M+", label: "Rubber seals supplied" },
-  { value: "450K+", label: "Traffic light seals" },
+  { value: "20", suffix: "+", label: "Years of experience" },
+  { value: "122K", suffix: "+", label: "Ventilation tube joins" },
+  { value: "5M", suffix: "+", label: "Rubber seals supplied" },
+  { value: "450K", suffix: "+", label: "Traffic light seals" },
 ];
 
 
@@ -103,6 +103,14 @@ export default function App() {
 
       {/* Hero */}
       <section className="hero">
+        <video
+          className="hero-video"
+          src="/images/hero.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
         <div className="hero-overlay" />
         <div className="wrap hero-inner">
           <div className="hero-grid">
@@ -157,32 +165,46 @@ export default function App() {
       </a>
 
       {/* Stats / About */}
-      <section className="wrap split" id="about">
-        <div>
-          <h2>
-            Wherever Precision Is Needed, <span className="accent">VSRP Delivers.</span>
-          </h2>
-          <div className="stats">
-            {STATS.map((s) => (
-              <div key={s.label} className="stat">
-                <b>{s.value}</b>
-                <span>{s.label}</span>
-              </div>
-            ))}
-          </div>
+      <section className="about-section" id="about">
+        <div className="about-stripes" aria-hidden="true">
+          <span />
+          <span />
+          <span />
         </div>
-        <div className="split-right">
-          <h3>We're engineers, manufacturers and problem-solvers.</h3>
-          <p>
-            Whether you need a custom seal, a specialised extrusion, a bonded rubber component or a completely new
-            product, we'll work with you to find the right solution.
-          </p>
-          <p>
-            We've been doing it for more than two decades, helping businesses across Australia keep projects moving.
-          </p>
-          <ArrowButton variant="light" href="#about">
-            ABOUT VSRP
-          </ArrowButton>
+        <div className="wrap about-wrap">
+          <div className="about-left">
+            <h2>
+              Wherever Precision Is<br />
+              Needed, <span className="accent">VSRP Delivers.</span>
+            </h2>
+            <div className="stats-grid">
+              {STATS.map((s) => (
+                <div key={s.label} className="stat-card">
+                  <b>
+                    {s.value}
+                    <span className="accent">{s.suffix}</span>
+                  </b>
+                  <span>{s.label}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="about-right">
+            <h3>
+              We're engineers, manufacturers<br />
+              and problem-solvers.
+            </h3>
+            <p>
+              Whether you need a custom seal, a specialised extrusion, a bonded rubber component or a completely new
+              product, we'll work with you to find the right solution.
+            </p>
+            <p>
+              We've been doing it for more than two decades, helping businesses across Australia keep projects moving.
+            </p>
+            <ArrowButton variant="light" href="#about">
+              ABOUT VSRP
+            </ArrowButton>
+          </div>
         </div>
       </section>
 
@@ -194,9 +216,17 @@ export default function App() {
         <p>
           We work with you to design, engineer and manufacture rubber solutions that meet your exact requirements.
         </p>
-        <svg viewBox="0 0 40 40" className="vmark">
-          <path d="M2 6 L14 6 L20 30 L26 6 L38 6 L24 36 L16 36 Z" fill="#fff" />
-        </svg>
+        <img src="/images/v-mark.png" alt="VSRP" className="vmark-img" />
+        <div>
+          <a href="#products" className="midcta-scroll">
+            <span className="midcta-scroll-circle">
+              <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M1 1L5 5L9 1" />
+              </svg>
+            </span>
+            <span className="midcta-scroll-text">SCROLL DOWN</span>
+          </a>
+        </div>
       </section>
 
       {/* Banner */}
@@ -296,38 +326,19 @@ export default function App() {
 
       {/* Projects */}
       <section className="wrap section" id="projects">
-        <div className="section-head">
+        <div className="section-head" style={{ alignItems: "flex-end" }}>
           <h2>
-            Wherever Precision Is Needed, <span className="accent">VSRP Delivers.</span>
+            Wherever Precision Is<br />
+            Needed, <span className="accent">VSRP Delivers.</span>
           </h2>
           <ArrowButton variant="light" href="#projects">VIEW ALL PROJECTS</ArrowButton>
         </div>
-        <div className="proj-grid">
-          {["MINING", "CONVEYOR SYSTEM"].map((active) => (
-            <div key={active}>
-              <div className="proj-img">
-                <Placeholder />
-                <a href="#projects" className="proj-view">VIEW PROJECT</a>
-                <div className="proj-tabs">
-                  {["MINING", "EPDM", "EXTRUSION", "CONVEYOR SYSTEM"].map((tag) => (
-                    <span
-                      key={tag}
-                      className={`proj-tag ${tag === active ? "on" : ""}`}
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="proj-cap">
-                <h3>Custom Extrusion Solution</h3>
-                <p>
-                  A specialised rubber extrusion profile engineered to meet strict performance and dimensional
-                  requirements.
-                </p>
-              </div>
-            </div>
-          ))}
+        <div className="projects-grid-wrap">
+          <img
+            src="/images/Group 2030.png"
+            alt="Projects"
+            className="projects-img"
+          />
         </div>
       </section>
 
