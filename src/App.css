@@ -94,6 +94,8 @@
 .midcta{background:#ffffff; color:#141414; text-align:center; padding:100px 32px 70px;}
 .midcta h2{font-size:clamp(32px,4.5vw,52px); font-weight:900; margin:0;}
 .midcta p{color:#666666; max-width:620px; margin:16px auto 0; font-size:15px; line-height:1.55;}
+.vmark-video-container{width:200px; height:160px; max-width:80%; margin:44px auto 36px; position:relative; display:flex; align-items:center; justify-content:center; -webkit-mask-image:url('/images/v-mask.png'); mask-image:url('/images/v-mask.png'); -webkit-mask-size:contain; mask-size:contain; -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat; -webkit-mask-position:center; mask-position:center; overflow:hidden;}
+.vmark-video{width:100%; height:100%; object-fit:cover; display:block;}
 .vmark-img{width:200px; max-width:80%; height:auto; margin:44px auto 36px; display:block;}
 .midcta-scroll{display:inline-flex; align-items:center; gap:10px; color:#141414; text-decoration:none; font-size:11px; font-weight:700; letter-spacing:0.1em; opacity:.85; transition:opacity .2s ease;}
 .midcta-scroll:hover{opacity:1;}

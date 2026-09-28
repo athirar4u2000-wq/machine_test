@@ -216,7 +216,16 @@ export default function App() {
         <p>
           We work with you to design, engineer and manufacture rubber solutions that meet your exact requirements.
         </p>
-        <img src="/images/v-mark.png" alt="VSRP" className="vmark-img" />
+        <div className="vmark-video-container">
+          <video
+            className="vmark-video"
+            src="/images/Rubber.mp4"
+            autoPlay
+            loop
+            muted
+            playsInline
+          />
+        </div>
         <div>
           <a href="#products" className="midcta-scroll">
             <span className="midcta-scroll-circle">
