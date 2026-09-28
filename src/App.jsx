@@ -23,12 +23,45 @@ const FAQS = [
     q: "What are minimum order quantities?",
     a: "MOQs vary by product and tooling — get in touch and we'll scope it for your project.",
   },
+  {
+    q: "How can I get a quote?",
+    a: "Send us your drawings, specifications, or sample components and our engineering team will provide a comprehensive quotation tailored to your requirements.",
+  },
+  {
+    q: "Which materials types do VSRP offer?",
+    a: "We work with a comprehensive range of materials including EPDM, Nitrile (NBR), Neoprene, Silicone, Viton (FKM), Natural Rubber, and specialised custom compounds.",
+  },
+  {
+    q: "Can VSRP source products & materials?",
+    a: "Yes, we have established global and domestic supply partners to source specific materials, custom tooling, and specialty rubber products for any industry requirement.",
+  },
 ];
 
 const INSIGHTS = [
-  { title: "Recycled Rubber, Reduced Waste", copy: "How reclaimed compounds are changing manufacturing." },
-  { title: "Inside Our Manufacturing Floor", copy: "A look at how raw rubber becomes finished product." },
-  { title: "Choosing The Right Seal Profile", copy: "What to consider before you specify a seal." },
+  {
+    image: "/image/insight-1.png",
+    title: "Understanding Rubber Compounds: Choosing The Right Material...",
+    width: "413px",
+    height: "284px",
+    top: "8030px",
+    left: "80px",
+  },
+  {
+    image: "/image/insight-2.png",
+    title: "Understanding Rubber Compounds: Choosing The Right Material...",
+    width: "413px",
+    height: "284px",
+    top: "8030px",
+    left: "513px",
+  },
+  {
+    image: "/image/insight-3.png",
+    title: "Understanding Rubber Compounds: Choosing The Right Material...",
+    width: "413px",
+    height: "284px",
+    top: "8030px",
+    left: "947px",
+  },
 ];
 
 const STATS = [
@@ -38,19 +71,6 @@ const STATS = [
   { value: "450K+", label: "Traffic light seals" },
 ];
 
-function Logo({ light = true }) {
-  return (
-    <div className="logo">
-      <svg viewBox="0 0 40 40" style={{ width: 32, height: 32, flexShrink: 0 }}>
-        <path d="M2 6 L14 6 L20 30 L26 6 L38 6 L24 36 L16 36 Z" fill="#e8531f" />
-      </svg>
-      <div className="logo-text" style={light ? undefined : { color: "#141414" }}>
-        VSRP
-        <small>ENGINEERED RUBBER</small>
-      </div>
-    </div>
-  );
-}
 
 function Placeholder({ className = "", style = {} }) {
   return <div className={`ph ${className}`} style={style} />;
@@ -73,45 +93,68 @@ export default function App() {
     <div className="vsrp">
       {/* Header */}
       <header className="header">
-        <div className="wrap header-inner">
-          <Logo />
-          <nav className="nav">
-            <div className="nav-links">
-              {["About", "Industries", "Products", "Projects", "Insights"].map((l) => (
-                <a key={l} href={`#${l.toLowerCase()}`}>
-                  {l}
-                </a>
-              ))}
-            </div>
-            <ArrowButton variant="solid" href="#contact">CONTACT</ArrowButton>
-          </nav>
-        </div>
+        <img
+          src="/images/Navbar.png"
+          alt="Navbar"
+          className="navbar-img"
+          style={{ width: "1280px", height: "59px", top:"35px", left:"80px" }}
+        />
       </header>
 
       {/* Hero */}
       <section className="hero">
-        <Placeholder />
-        <div className="wrap hero-inner" style={{ width: "100%" }}>
-          <h1>
-            Custom Rubber Solutions.
-            <br />
-            Engineered To <span className="accent">Perform.</span>
-          </h1>
-          <div className="hero-lede">
-            <p>
-              For more than 20 years, we've helped Australian businesses solve problems with engineered rubber
-              solutions. From design and tooling to manufacturing and delivery, we make what you need, when you need
-              it.
-            </p>
-            <div className="hero-ctas">
-              <ArrowButton variant="solid" href="#contact">DISCUSS YOUR PROJECT</ArrowButton>
-              <a href="#about" className="text-link">
-                SEE WHAT WE DO →
+        <div className="hero-overlay" />
+        <div className="wrap hero-inner">
+          <div className="hero-grid">
+            <div className="hero-col-left">
+              <h1 className="hero-title">
+                Custom Rubber<br />
+                Solutions<span className="hero-dot">.</span>
+              </h1>
+              <p className="hero-desc">
+                For more than 20 years, we've helped Australian businesses solve problems with engineered rubber
+                solutions. From design and tooling to manufacturing and delivery, we make what you need, when you need
+                it.
+              </p>
+              <a href="#about" className="hero-scroll">
+                <span className="hero-scroll-circle">
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M1 1L5 5L9 1" />
+                  </svg>
+                </span>
+                <span className="hero-scroll-text">SCROLL DOWN</span>
               </a>
+            </div>
+
+            <div className="hero-col-right">
+              <div className="hero-title hero-title-right">
+                Engineered To<br />
+                Perform<span className="hero-dot">.</span>
+              </div>
+              <div className="hero-ctas">
+                <ArrowButton variant="dark" href="#contact">DISCUSS YOUR PROJECT</ArrowButton>
+                <a href="#about" className="hero-link">
+                  <span className="hero-link-text">SEE WHAT WE DO</span>
+                  <span className="hero-link-arrow">→</span>
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Floating WhatsApp button */}
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whatsapp-fab"
+        aria-label="WhatsApp"
+      >
+        <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor">
+          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24h.02zm-3.5 3.65c-.2 0-.46.07-.7.34-.24.27-.92.9-.92 2.2s.94 2.55 1.07 2.73c.13.18 1.83 2.8 4.45 3.93.62.27 1.11.43 1.49.55.63.2 1.2.17 1.66.1.5-.07 1.54-.63 1.76-1.24.22-.61.22-1.13.15-1.24-.07-.11-.25-.18-.52-.31s-1.58-.78-1.83-.87c-.24-.09-.42-.14-.6.14-.18.27-.69.87-.85 1.05-.16.18-.31.2-.58.07-.27-.14-1.14-.42-2.17-1.34-.8-.72-1.34-1.61-1.5-1.88-.16-.27-.02-.42.12-.55.12-.12.27-.31.4-.47.13-.16.18-.27.27-.45.09-.18.04-.34-.02-.47-.07-.14-.6-1.45-.83-1.99-.22-.52-.44-.45-.6-.46l-.51-.01z" />
+        </svg>
+      </a>
 
       {/* Stats / About */}
       <section className="wrap split" id="about">
@@ -289,20 +332,26 @@ export default function App() {
       </section>
 
       {/* FAQ */}
-      <section className="wrap section">
-        <div className="faq-wrap">
+      <section className="faq-section" id="faq">
+        <div className="faq-stripes" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="wrap faq-wrap">
           <div className="faq-intro">
             <h2>
-              Frequently Asked <span className="accent">Questions</span>
+              Frequently Asked<br />
+              <span className="accent">Questions</span>
             </h2>
             <p>
               We've heard it all. Here's everything you need to know before working with us.
             </p>
             <ArrowButton variant="solid" href="#contact">ASK A QUESTION</ArrowButton>
           </div>
-          <div>
+          <div className="faq-list">
             {FAQS.map((f, i) => (
-              <div key={f.q} className="qa">
+              <div key={f.q} className={`qa ${openFaq === i ? "qa-open" : ""}`}>
                 <button
                   type="button"
                   onClick={() => setOpenFaq(openFaq === i ? -1 : i)}
@@ -320,21 +369,39 @@ export default function App() {
 
       {/* Insights */}
       <section className="wrap section" id="insights">
-        <div className="section-head">
-          <h2>
-            Industry <span className="accent">Insights</span>
-          </h2>
+        <div className="section-head" style={{ marginBottom: "36px", alignItems: "flex-end" }}>
+          <div>
+            <h2>
+              Industry <span className="accent">Insights</span>
+            </h2>
+            <p style={{ marginTop: "14px", color: "#6b6b6b", fontSize: "15px", lineHeight: "1.5", maxWidth: "450px" }}>
+              Practical advice, material expertise and engineering knowledge to help you make informed decisions
+            </p>
+          </div>
           <ArrowButton variant="light" href="#insights">VIEW ALL INSIGHTS</ArrowButton>
         </div>
         <div className="ins-grid">
-          {INSIGHTS.map((ins) => (
-            <div key={ins.title}>
+          {INSIGHTS.map((ins, index) => (
+            <div key={index} className="ins-card">
               <div className="ins-img">
-                <Placeholder />
+                <img
+                  src={ins.image}
+                  alt={ins.title}
+                  className={`insight-img-${index + 1}`}
+                  style={{
+                    width: ins.width,
+                    height: ins.height,
+                    top: ins.top,
+                    left: ins.left,
+                  }}
+                />
               </div>
               <div className="ins-cap">
                 <h3>{ins.title}</h3>
-                <p>{ins.copy}</p>
+                <a href="#insights" className="ins-link">
+                  <span>VIEW DETAIL</span>
+                  <span className="ins-arrow">→</span>
+                </a>
               </div>
             </div>
           ))}
@@ -342,8 +409,13 @@ export default function App() {
       </section>
 
       {/* Bottom banner */}
-      <section className="banner" style={{ minHeight: "52vh", textAlign: "left" }} id="contact">
-        <Placeholder style={{ opacity: 0.7 }} />
+      <section className="banner" style={{ minHeight: "608px", textAlign: "left" }} id="contact">
+        <img
+          src="/image/furthering quality in our industries.png"
+          alt="furthering quality in our industries"
+          className="banner-bg-img"
+          style={{ width: "1440px", height: "608px", top: "8587px" }}
+        />
         <div className="wrap banner-content" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 32, flexWrap: "wrap", width: "100%" }}>
           <h2 style={{ maxWidth: 520, margin: 0 }}>
             furthering quality in <span className="accent">our industries.</span>
@@ -362,7 +434,11 @@ export default function App() {
 
       {/* Footer */}
       <footer className="footer">
-        <img src="/images/footer.png" alt="Footer" />
+        <img
+          src="/images/Footer.png"
+          alt="Footer"
+          className="footer-img"
+        />
       </footer>
     </div>
   );
