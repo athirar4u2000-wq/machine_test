@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 
-const INDUSTRIES = ["Agriculture & Irrigation", "Mining", "Defence", "Road Transport"];
+const INDUSTRIES = ["Agriculture & Irrigation", "Mining", "Defence"];
+const INDUSTRY_BOTTOM_TABS = ["Civil", "Mining", "Agriculture", "Building", "Transport & Infrastructure"];
 
 const PROCESS_STEPS = [
   { num: "01", title: "Tell Us What You Need", copy: "Send us a drawing, sample or specification." },
@@ -76,6 +77,42 @@ function Placeholder({ className = "", style = {} }) {
   return <div className={`ph ${className}`} style={style} />;
 }
 
+function LightbulbIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M9 18h6" />
+      <path d="M10 21h4" />
+      <path d="M12 2a6.5 6.5 0 0 0-6.5 6.5c0 2.4 1.4 4.5 2.5 5.5h8c1.1-1 2.5-3.1 2.5-5.5A6.5 6.5 0 0 0 12 2z" />
+      <circle cx="12" cy="8.5" r="2.8" strokeWidth="1.3" />
+      <path d="m11 8.5.8.8 1.5-1.5" strokeWidth="1.5" />
+    </svg>
+  );
+}
+
+function TeamStarIcon() {
+  return (
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M12 1.2l1.1 2.4 2.6.4-1.9 1.8.5 2.6L12 7.1l-2.3 1.3.5-2.6-1.9-1.8 2.6-.4z" />
+      <circle cx="12" cy="11.2" r="2.2" />
+      <path d="M8 19.5v-1c0-1.8 1.8-3 4-3s4 1.2 4 3v1z" />
+      <circle cx="6.2" cy="12.8" r="1.8" />
+      <path d="M2.5 19.5v-.8c0-1.4 1.4-2.2 3.2-2.5.3.7.9 1.3 1.8 1.6v1.7z" />
+      <circle cx="17.8" cy="12.8" r="1.8" />
+      <path d="M16.5 17.8c.9-.3 1.5-.9 1.8-1.6 1.8.3 3.2 1.1 3.2 2.5v.8z" />
+    </svg>
+  );
+}
+
+function BadgeCheckIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76z" />
+      <circle cx="12" cy="12" r="5" strokeWidth="1.2" />
+      <path d="m9.5 12 1.8 1.8 3.5-3.5" strokeWidth="1.8" />
+    </svg>
+  );
+}
+
 function ArrowButton({ children, variant = "solid", className = "", ...props }) {
   return (
     <a className={`btn btn-${variant} ${className}`} {...props}>
@@ -87,6 +124,7 @@ function ArrowButton({ children, variant = "solid", className = "", ...props }) 
 
 export default function App() {
   const [activeIndustry, setActiveIndustry] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
   const [openFaq, setOpenFaq] = useState(0);
 
   return (
@@ -240,7 +278,15 @@ export default function App() {
 
       {/* Banner */}
       <section className="banner">
-        <Placeholder />
+        <video
+          className="banner-video"
+          src="/images/Rubber.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+        <div className="banner-overlay" />
         <div className="wrap banner-content">
           <h2>
             Whatever You Need in Rubber, We Can <span className="accent">Shape It.</span>
@@ -251,60 +297,118 @@ export default function App() {
         </div>
       </section>
 
-      {/* Three cards */}
-      <section className="wrap section">
-        <div className="section-head">
-          <h2>
-            More Than A <span className="accent">Rubber Company.</span>
-          </h2>
-          <p>
-            We're engineers, problem-solvers and manufacturing partners, helping businesses turn unique requirements
-            into reliable, high-performance rubber solutions.
-          </p>
-        </div>
-        <div className="cards3">
-          {[
-            { icon: "💡", title: "We Engineer Solutions.", copy: "Custom products designed around your exact requirements." },
-            { icon: "👥", title: "We Know Rubber.", copy: "Material expertise backed by 20+ years of industry experience." },
-            { icon: "✔", title: "We Deliver Confidence.", copy: "Quality, traceability and reliability at every stage." },
-          ].map((c) => (
-            <div key={c.title} className="card">
-              <div className="card-ico">{c.icon}</div>
-              <h3>{c.title}</h3>
-              <p>{c.copy}</p>
-            </div>
-          ))}
+      {/* More Than A Rubber Company (Three cards) */}
+      <section className="more-than-section">
+        <div className="wrap">
+          <div className="more-than-head">
+            <h2>
+              More Than A<br />
+              <span className="accent">Rubber Company.</span>
+            </h2>
+            <p>
+              We're engineers, problem-solvers and manufacturing partners, helping businesses turn unique requirements
+              into reliable, high-performance rubber solutions.
+            </p>
+          </div>
+          <div className="cards3">
+            {[
+              {
+                icon: <LightbulbIcon />,
+                title: "We Engineer Solutions.",
+                copy: "Custom products designed around your exact requirements.",
+              },
+              {
+                icon: <TeamStarIcon />,
+                title: "We Know Rubber.",
+                copy: "Material expertise backed by 20+ years of industry experience.",
+              },
+              {
+                icon: <BadgeCheckIcon />,
+                title: "We Deliver Confidence.",
+                copy: "Quality, traceability and reliability at every stage.",
+              },
+            ].map((c, idx) => (
+              <div key={c.title} className={`card ${idx === 0 ? "active" : ""}`}>
+                <div className="card-ico">{c.icon}</div>
+                <div className="card-body">
+                  <div className="card-line" />
+                  <h3>{c.title}</h3>
+                  <p>{c.copy}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Industries */}
-      <section className="wrap section" id="industries">
-        <div className="section-head">
-          <h2>
-            Rubber Solutions Built For <span className="accent">Industry.</span>
-          </h2>
-          <p>
-            From infrastructure and mining to agriculture and transport, we help businesses solve complex challenges
-            with engineered rubber solutions.
-          </p>
-        </div>
-        <div className="ind">
-          <div className="ind-list">
-            <div className="ind-tag">OUR INDUSTRIES</div>
-            {INDUSTRIES.map((ind, i) => (
-              <button
-                key={ind}
-                type="button"
-                onClick={() => setActiveIndustry(i)}
-                className={`ind-item ${activeIndustry === i ? "active" : ""}`}
-              >
-                {ind}
-              </button>
-            ))}
+      <section className="industries-section" id="industries">
+        <div className="wrap">
+          <div className="industries-head">
+            <h2>
+              Rubber Solutions Built For <span className="accent">Industry.</span>
+            </h2>
+            <p>
+              From infrastructure and mining to agriculture and transport, we help businesses solve
+              complex challenges with engineered rubber solutions.
+            </p>
           </div>
-          <div className="ind-img">
-            <div className="ind-badge">🚜</div>
-            <Placeholder />
+
+          <div className="ind-grid">
+            {/* Left Dark Panel */}
+            <div className="ind-left-panel">
+              <div className="ind-tag-top">OUR INDUSTRIES</div>
+
+              <div className="ind-vertical-list">
+                {INDUSTRIES.map((ind, i) => (
+                  <button
+                    key={ind}
+                    type="button"
+                    onClick={() => setActiveIndustry(i)}
+                    className={`ind-v-item ${activeIndustry === i ? "active" : "muted"}`}
+                  >
+                    {ind}
+                  </button>
+                ))}
+              </div>
+
+              <div className="ind-bottom-nav">
+                <div className="ind-divider-line">
+                  <div
+                    className="ind-divider-accent"
+                    style={{
+                      left: activeTab === 0 ? "0%" : activeTab === 1 ? "12%" : activeTab === 2 ? "28%" : activeTab === 3 ? "48%" : "66%",
+                      width: activeTab === 0 ? "30px" : activeTab === 1 ? "44px" : activeTab === 2 ? "68px" : activeTab === 3 ? "52px" : "110px",
+                    }}
+                  />
+                </div>
+                <div className="ind-tabs">
+                  {INDUSTRY_BOTTOM_TABS.map((tab, idx) => (
+                    <button
+                      key={tab}
+                      type="button"
+                      onClick={() => setActiveTab(idx)}
+                      className={`ind-tab-btn ${activeTab === idx ? "active" : ""}`}
+                    >
+                      {tab}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Right Image Panel */}
+            <div className="ind-right-panel">
+              <img
+                src="/images/Industry (1).png"
+                alt="Mining Industry"
+                className="ind-panel-img"
+              />
+              <a href="#capabilities" className="ind-caps-btn">
+                <span>SEE OUR CAPABILITIES</span>
+                <span className="ind-caps-dot">→</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
