@@ -1978,3 +1978,55 @@ footer {
   }
 
 }
+/* =========================
+   MID CTA - MOBILE FIX
+========================= */
+
+@media (max-width: 600px) {
+  .midcta {
+    width: 100%;
+    margin: 0;
+    padding: 60px 14px 50px;
+    text-align: left;
+  }
+
+  .midcta h2 {
+    width: 100%;
+    margin: 0;
+    font-size: 34px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .midcta p {
+    width: 100%;
+    max-width: 100%;
+    margin: 16px 0 0;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .midcta .vmark-video-container,
+  .midcta .vmark-img {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .midcta-scroll {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 400px) {
+  .midcta {
+    padding: 50px 10px 45px;
+  }
+
+  .midcta h2 {
+    font-size: 32px;
+  }
+
+  .midcta p {
+    font-size: 13px;
+  }
+}
