@@ -40,7 +40,7 @@ const FAQS = [
 
 const INSIGHTS = [
   {
-    image: "/image/insight-1.png",
+    image: "/images/insight-1.png",
     title: "Understanding Rubber Compounds: Choosing The Right Material...",
     width: "413px",
     height: "284px",
@@ -48,7 +48,7 @@ const INSIGHTS = [
     left: "80px",
   },
   {
-    image: "/image/insight-2.png",
+    image: "/images/insight-2.png",
     title: "Understanding Rubber Compounds: Choosing The Right Material...",
     width: "413px",
     height: "284px",
@@ -56,7 +56,7 @@ const INSIGHTS = [
     left: "513px",
   },
   {
-    image: "/image/insight-3.png",
+    image: "/images/insight-3.png",
     title: "Understanding Rubber Compounds: Choosing The Right Material...",
     width: "413px",
     height: "284px",
@@ -564,14 +564,14 @@ export default function App() {
       {/* Bottom banner */}
       <section className="banner" style={{ minHeight: "608px", textAlign: "left" }} id="contact">
         <img
-          src="/image/furthering quality in our industries.png"
+          src="/images/furthering quality in our industries.png"
           alt="furthering quality in our industries"
           className="banner-bg-img"
           style={{ width: "1440px", height: "608px", top: "8587px" }}
         />
         <div className="wrap banner-content" style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 32, flexWrap: "wrap", width: "100%" }}>
           <h2 style={{ maxWidth: 520, margin: 0 }}>
-            furthering quality in <span className="accent">our industries.</span>
+            VSRP are furthering quality in <span className="accent">our industries.</span>
           </h2>
           <div style={{ maxWidth: 380 }}>
             <p style={{ color: "#ddd", fontSize: 15, lineHeight: 1.6 }}>
