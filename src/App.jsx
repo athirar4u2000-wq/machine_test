@@ -1302,7 +1302,7 @@ export default function App() {
       <footer className="footer">
 
         <img
-          src="/images/Footer.png"
+          src="/images/footer.png"
           alt="VSRP Footer"
           className="footer-img"
         />
