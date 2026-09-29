@@ -6,9 +6,9 @@ const INDUSTRY_BOTTOM_TABS = ["Civil", "Mining", "Agriculture", "Building", "Tra
 
 const PROCESS_STEPS = [
   { num: "01", title: "Tell Us What You Need", copy: "Send us a drawing, sample or specification." },
-  { num: "02", title: "We'll Engineer The Solution", copy: "Our team designs and prototypes to your exact spec." },
-  { num: "03", title: "We Manufacture With Precision", copy: "Produced in-house under strict quality control." },
-  { num: "04", title: "We Deliver, On Time", copy: "Reliable delivery so your project keeps moving." },
+  { num: "02", title: "We'll Engineer The Solution", copy: "Materials, tooling and manufacturing approach." },
+  { num: "03", title: "We'll Make It", copy: "Materials, tooling and manufacturing approach." },
+  { num: "04", title: "We'll Deliver It", copy: "Materials, tooling and manufacturing approach." },
 ];
 
 const FAQS = [
@@ -414,26 +414,58 @@ export default function App() {
       </section>
 
       {/* Process */}
-      <section className="section process">
-        <div className="wrap process-head">
-          <h2>
-            From Concept to Delivery, We Make it <span className="accent">Happen</span>
-          </h2>
-          <p>
-            A proven process built around collaboration, precision and a commitment to quality at every step.
-          </p>
-        </div>
-        <div className="steps">
-          {PROCESS_STEPS.map((s, i) => (
-            <div key={s.num} className="step">
-              {i !== PROCESS_STEPS.length - 1 && <div className="step-line" />}
-              <div className="step-num">{s.num}</div>
-              <div>
-                <h3>{s.title}</h3>
-                <p>{s.copy}</p>
-              </div>
+      <section className="process-section">
+        <div className="wrap">
+          {/* Header */}
+          <div className="process-head">
+            <h2>
+              From Concept to Delivery,<br />
+              We Make it <span className="accent">Happen</span>
+            </h2>
+            <p>
+              A proven process built around collaboration, precision and a commitment to quality at every step.
+            </p>
+          </div>
+
+          {/* Two-column body */}
+          <div className="process-body">
+            {/* Steps list */}
+            <div className="process-steps-col">
+              {PROCESS_STEPS.map((s, i) => (
+                <div key={s.num} className={`pstep ${i === 0 ? "active" : ""}`}>
+                  <div className="pstep-left">
+                    <div className={`pstep-num ${i === 0 ? "active" : ""}`}>{s.num}</div>
+                    {i !== PROCESS_STEPS.length - 1 && <div className="pstep-line" />}
+                  </div>
+                  <div className="pstep-content">
+                    <h3>{s.title}</h3>
+                    <p>{s.copy}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+
+            {/* Computer illustration */}
+            <div className="process-img-col">
+              <img
+                src="/images/computer.png"
+                alt="Engineering process illustration"
+                className="process-computer-img"
+              />
+            </div>
+          </div>
+
+          {/* Scroll down */}
+          <div className="process-scroll-row">
+            <a href="#projects" className="process-scroll-link">
+              <span className="process-scroll-circle">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M2 5l5 5 5-5" />
+                </svg>
+              </span>
+              <span className="process-scroll-text">SCROLL DOWN</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -492,43 +524,40 @@ export default function App() {
       </section>
 
       {/* Insights */}
-      <section className="wrap section" id="insights">
-        <div className="section-head" style={{ marginBottom: "36px", alignItems: "flex-end" }}>
-          <div>
-            <h2>
-              Industry <span className="accent">Insights</span>
-            </h2>
-            <p style={{ marginTop: "14px", color: "#6b6b6b", fontSize: "15px", lineHeight: "1.5", maxWidth: "450px" }}>
-              Practical advice, material expertise and engineering knowledge to help you make informed decisions
-            </p>
-          </div>
-          <ArrowButton variant="light" href="#insights">VIEW ALL INSIGHTS</ArrowButton>
-        </div>
-        <div className="ins-grid">
-          {INSIGHTS.map((ins, index) => (
-            <div key={index} className="ins-card">
-              <div className="ins-img">
-                <img
-                  src={ins.image}
-                  alt={ins.title}
-                  className={`insight-img-${index + 1}`}
-                  style={{
-                    width: ins.width,
-                    height: ins.height,
-                    top: ins.top,
-                    left: ins.left,
-                  }}
-                />
-              </div>
-              <div className="ins-cap">
-                <h3>{ins.title}</h3>
-                <a href="#insights" className="ins-link">
-                  <span>VIEW DETAIL</span>
-                  <span className="ins-arrow">→</span>
-                </a>
-              </div>
+      <section className="insights-section" id="insights">
+        <div className="wrap">
+          <div className="ins-header">
+            <div className="ins-header-left">
+              <h2>
+                Industry <span className="accent">Insights</span>
+              </h2>
+              <p>
+                Practical advice, material expertise and engineering<br />
+                knowledge to help you make informed decisions
+              </p>
             </div>
-          ))}
+            <ArrowButton variant="light" href="#insights">VIEW ALL INSIGHTS</ArrowButton>
+          </div>
+
+          <div className="ins-grid">
+            {INSIGHTS.map((ins, index) => (
+              <div key={index} className="ins-card">
+                <div className="ins-img">
+                  <img
+                    src={ins.image}
+                    alt={ins.title}
+                  />
+                </div>
+                <div className="ins-cap">
+                  <h3>{ins.title}</h3>
+                  <a href="#insights" className="ins-link">
+                    <span>VIEW DETAIL</span>
+                    <span className="ins-arrow">→</span>
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
