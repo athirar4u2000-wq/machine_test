@@ -259,50 +259,31 @@ export default function App() {
           HEADER
       ===================================================== */}
 
-      <header className="header">
-        <div className="header-inner wrap">
-          {/* Logo */}
-          <a href="#" className="logo">
-            <svg width="42" height="36" viewBox="0 0 42 36" fill="none">
-              <path d="M5.5 2C3.5 4 1.5 8 1.5 12c0 6 4 10 8 14l10 10 2-2L7.5 20C4.5 17 2.5 13.5 2.5 10c0-3 1-5.5 3-7.5" fill="#e8531f"/>
-              <path d="M14 2c-2 2-4 5-4 9 0 5 3 8 7 12l4 4 2-2-5-5C14 16 12 13 12 9c0-3 1-5 2-7" fill="#e8531f"/>
-              <path d="M22 2c-1.5 1.5-3 4-3 7 0 4 2 6 5 9l2 2 2-2-3-3c-2.5-2.5-4-5-4-7 0-2 .5-4 1-6" fill="#e8531f"/>
-            </svg>
-            <div className="logo-text">
-              VSRP
-              <small>Engineered To Perform</small>
-            </div>
-          </a>
+     <header className="header">
+  <div className="header-inner">
+    <nav className="nav">
 
-          {/* Nav */}
-          <nav className="nav">
-            <div className="nav-links">
-              <a href="#about">ABOUT</a>
-              <div className="nav-dropdown-wrap">
-                <a href="#industries" className="nav-dropdown-trigger">
-                  INDUSTRIES
-                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft: 4}}>
-                    <path d="M1 1L5 5L9 1" />
-                  </svg>
-                </a>
-                <div className="nav-mega-dropdown">
-                  <img
-                    src="/images/Navigation menu.png"
-                    alt="Industries Menu"
-                    className="nav-mega-img"
-                  />
-                </div>
-              </div>
-              <a href="#products">PRODUCTS</a>
-              <a href="#projects">PROJECTS</a>
-              <a href="#insights">INSIGHTS</a>
-            </div>
-            <ArrowButton variant="solid" href="#contact" className="nav-contact-btn">
-              CONTACT
-            </ArrowButton>
-          </nav>
+      {/* Navbar Image */}
+      <img
+        src="/images/Navbar.png"
+        alt="Navigation"
+        className="navbar-img"
+      />
+
+      {/* INDUSTRIES Hover Area */}
+      <div className="industries-hover-area">
+        <div className="nav-mega-dropdown">
+          <img
+            src="/images/Navigation menu.png"
+            alt="Industries Menu"
+            className="nav-mega-img"
+          />
         </div>
-      </header>
+      </div>
+
+    </nav>
+  </div>
+</header>
 
       {/* =====================================================
           HERO
