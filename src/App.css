@@ -295,7 +295,7 @@
   line-height: 1.06;
   letter-spacing: -0.03em;
   color: #fff;
-  margin: 0;
+  margin-left: 5px;
 }
 
 .hero-title-right {
@@ -1621,33 +1621,24 @@
 }
 
 /* =========================
-   HEADER
-========================= */
-
-/* =========================
    RESPONSIVE NAVBAR
 ========================= */
-
 .header {
   position: absolute;
   top: 35px;
   left: 50%;
   transform: translateX(-50%);
-
   width: min(1280px, calc(100% - 40px));
   z-index: 1000;
-
   background: transparent !important;
   padding: 0;
   margin: 0;
-  border: 0;
-  box-shadow: none;
 }
 
 .header-inner {
   width: 100%;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .nav {
@@ -1661,19 +1652,15 @@
   display: block;
   width: 100%;
   height: auto;
-  max-width: 1280px;
-  margin: 0;
 }
 
 
-/* =========================
-   INDUSTRIES HOVER
-========================= */
+/* INDUSTRIES */
 
 .industries-hover-area {
   position: absolute;
 
-  /* Based on 1280px navbar */
+  /* INDUSTRIES position */
   left: 33.6%;
   top: 0;
 
@@ -1681,17 +1668,16 @@
   height: 100%;
 
   cursor: pointer;
+  z-index: 10;
 }
 
 
-/* =========================
-   DROPDOWN
-========================= */
+/* Navigation menu */
 
 .nav-mega-dropdown {
   position: absolute;
 
-  top: calc(100% + 8px);
+  top: calc(100% + 5px);
   left: 50%;
 
   width: 520px;
@@ -1705,11 +1691,11 @@
 
   z-index: 9999;
 
-  transition:
-    opacity 0.2s ease,
-    transform 0.2s ease,
-    visibility 0.2s ease;
+  transition: all 0.2s ease;
 }
+
+
+/* Hover */
 
 .industries-hover-area:hover .nav-mega-dropdown {
   opacity: 1;
@@ -1719,6 +1705,7 @@
   transform: translateX(-50%) translateY(0);
 }
 
+
 .nav-mega-img {
   display: block;
   width: 100%;
@@ -1726,9 +1713,7 @@
 }
 
 
-/* =========================
-   TABLET
-========================= */
+/* TABLET */
 
 @media (max-width: 900px) {
 
@@ -1749,9 +1734,7 @@
 }
 
 
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 600px) {
 
@@ -1766,16 +1749,13 @@
   }
 
   .nav-mega-dropdown {
-    top: calc(100% + 5px);
     width: 90vw;
     max-width: 90vw;
   }
 }
 
 
-/* =========================
-   SMALL MOBILE
-========================= */
+/* SMALL MOBILE */
 
 @media (max-width: 400px) {
 
@@ -1793,4 +1773,207 @@
     width: 94vw;
     max-width: 94vw;
   }
+}
+/* ==============================
+   GLOBAL RESPONSIVE
+============================== */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ==============================
+   TEXT RESPONSIVE
+============================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+li,
+button {
+  max-width: 100%;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+/* Headings */
+h1 {
+  font-size: clamp(2rem, 5vw, 5rem);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+  line-height: 1.15;
+}
+
+h3 {
+  font-size: clamp(1.4rem, 3vw, 2.5rem);
+  line-height: 1.2;
+}
+
+p {
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+  line-height: 1.6;
+}
+
+/* ==============================
+   IMAGES
+============================== */
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+img,
+picture {
+  display: block;
+}
+
+picture img {
+  width: 100%;
+  height: auto;
+}
+
+/* ==============================
+   VIDEOS
+============================== */
+
+video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Video containers */
+.video-container {
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ==============================
+   SECTIONS / CONTAINERS
+============================== */
+
+section,
+main,
+header,
+footer {
+  width: 100%;
+  max-width: 100%;
+}
+
+.container {
+  width: min(1200px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* ==============================
+   RESPONSIVE SPACING
+============================== */
+
+.section {
+  padding: clamp(40px, 6vw, 100px) 0;
+}
+
+/* ==============================
+   TABLET
+============================== */
+
+@media (max-width: 900px) {
+
+  .container {
+    width: calc(100% - 30px);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 7vw, 4rem);
+  }
+
+  h2 {
+    font-size: clamp(1.6rem, 5vw, 3rem);
+  }
+
+}
+
+/* ==============================
+   MOBILE
+============================== */
+
+@media (max-width: 600px) {
+
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  h1 {
+    font-size: clamp(1.8rem, 9vw, 3rem);
+  }
+
+  h2 {
+    font-size: clamp(1.5rem, 7vw, 2.5rem);
+  }
+
+  h3 {
+    font-size: clamp(1.25rem, 6vw, 2rem);
+  }
+
+  p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+}
+
+/* ==============================
+   SMALL MOBILE
+============================== */
+
+@media (max-width: 400px) {
+
+  .container {
+    width: calc(100% - 20px);
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
 }
