@@ -404,30 +404,32 @@
 ========================= */
 
 .whatsapp-fab {
-  position: fixed;
-  bottom: 28px;
+  position: absolute;
+  top: 508px;
   right: 28px;
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: #25d366;
-  color: #fff;
+
+  width: 34px;
+  height: 34px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
-  z-index: 99;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+
+  border-radius: 50%;
+  background: rgba(30, 30, 30, 0.75);
+  color: #25D366;
+
+  z-index: 1000;
   text-decoration: none;
+
+  transition: all 0.3s ease;
 }
 
 .whatsapp-fab:hover {
   transform: scale(1.08);
-  background: #20bd5a;
+  background: #25D366;
+  color: #fff;
 }
-
 /* =========================
    STATS / ABOUT SECTION
 ========================= */
@@ -1616,4 +1618,119 @@
   color: #8a8a8a;
   flex-wrap: wrap;
   gap: 10px;
+}
+/* =========================
+   HEADER / NAVBAR
+========================= */
+
+.header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.header-inner {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+}
+
+/* LOGO */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* NAVIGATION */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links > a,
+.nav-dropdown-trigger {
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.nav-links > a:hover,
+.nav-dropdown-trigger:hover {
+  opacity: 0.7;
+}
+
+/* INDUSTRIES */
+.nav-dropdown-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.nav-dropdown-trigger {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* =========================
+   INDUSTRIES HOVER MENU
+========================= */
+
+.nav-mega-dropdown {
+  position: absolute;
+
+  /* INDUSTRIES-ന്റെ താഴെ */
+  top: calc(100% + 14px);
+  left: 50%;
+
+  width: 520px;
+
+  transform: translateX(-50%) translateY(-8px);
+
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+
+  z-index: 9999;
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s ease;
+}
+
+/* Mouse INDUSTRIES-ൽ കൊണ്ടുപോകുമ്പോൾ മാത്രം കാണിക്കും */
+.nav-dropdown-wrap:hover .nav-mega-dropdown {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Navigation menu.png */
+.nav-mega-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }

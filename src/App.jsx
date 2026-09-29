@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
+/* =========================================================
+   DATA
+========================================================= */
+
 const INDUSTRIES = [
   "Agriculture & Irrigation",
   "Mining",
@@ -70,28 +74,16 @@ const INSIGHTS = [
     image: "/images/insight-1.png",
     title:
       "Understanding Rubber Compounds: Choosing The Right Material...",
-    width: "413px",
-    height: "284px",
-    top: "8030px",
-    left: "80px",
   },
   {
     image: "/images/insight-2.png",
     title:
       "Understanding Rubber Compounds: Choosing The Right Material...",
-    width: "413px",
-    height: "284px",
-    top: "8030px",
-    left: "513px",
   },
   {
     image: "/images/insight-3.png",
     title:
       "Understanding Rubber Compounds: Choosing The Right Material...",
-    width: "413px",
-    height: "284px",
-    top: "8030px",
-    left: "947px",
   },
 ];
 
@@ -118,8 +110,25 @@ const STATS = [
   },
 ];
 
-function Placeholder({ className = "", style = {} }) {
-  return <div className={`ph ${className}`} style={style} />;
+/* =========================================================
+   REUSABLE COMPONENTS
+========================================================= */
+
+function ArrowButton({
+  children,
+  variant = "solid",
+  className = "",
+  ...props
+}) {
+  return (
+    <a
+      className={`btn btn-${variant} ${className}`}
+      {...props}
+    >
+      {children}
+      <span className="dot">→</span>
+    </a>
+  );
 }
 
 function LightbulbIcon() {
@@ -137,7 +146,12 @@ function LightbulbIcon() {
       <path d="M9 18h6" />
       <path d="M10 21h4" />
       <path d="M12 2a6.5 6.5 0 0 0-6.5 6.5c0 2.4 1.4 4.5 2.5 5.5h8c1.1-1 2.5-3.1 2.5-5.5A6.5 6.5 0 0 0 12 2z" />
-      <circle cx="12" cy="8.5" r="2.8" strokeWidth="1.3" />
+      <circle
+        cx="12"
+        cy="8.5"
+        r="2.8"
+        strokeWidth="1.3"
+      />
       <path
         d="m11 8.5.8.8 1.5-1.5"
         strokeWidth="1.5"
@@ -192,41 +206,36 @@ function BadgeCheckIcon() {
   );
 }
 
-function ArrowButton({
-  children,
-  variant = "solid",
-  className = "",
-  ...props
-}) {
-  return (
-    <a
-      className={`btn btn-${variant} ${className}`}
-      {...props}
-    >
-      {children}
-      <span className="dot">→</span>
-    </a>
-  );
-}
+/* =========================================================
+   APP
+========================================================= */
 
 export default function App() {
-  const [activeIndustry, setActiveIndustry] = useState(1);
-  const [activeTab, setActiveTab] = useState(0);
-  const [openFaq, setOpenFaq] = useState(0);
+  /* =======================================================
+     STATES
+  ======================================================= */
 
-  // ==========================================
-  // INDUSTRY IMAGE SLIDER
-  // Color → Black & White → Color
-  // ==========================================
+  const [activeIndustry, setActiveIndustry] = useState(1);
+
+  const [activeTab, setActiveTab] = useState(0);
+
+  const [openFaq, setOpenFaq] = useState(0);
 
   const [industryImage, setIndustryImage] = useState(
     "/images/Industry (1).png"
   );
 
+  /* =======================================================
+     INDUSTRY IMAGE AUTO SLIDER
+  ======================================================= */
+
   useEffect(() => {
     const interval = setInterval(() => {
-      setIndustryImage((prevImage) => {
-        if (prevImage === "/images/Industry (1).png") {
+      setIndustryImage((previousImage) => {
+        if (
+          previousImage ===
+          "/images/Industry (1).png"
+        ) {
           return "/images/industry 1 (2).png";
         }
 
@@ -239,32 +248,68 @@ export default function App() {
     };
   }, []);
 
+  /* =======================================================
+     RETURN
+  ======================================================= */
+
   return (
     <div className="vsrp">
 
-      {/* ==========================================
+      {/* =====================================================
           HEADER
-      ========================================== */}
+      ===================================================== */}
 
       <header className="header">
-        <img
-          src="/images/Navbar.png"
-          alt="Navbar"
-          className="navbar-img"
-          style={{
-            width: "1280px",
-            height: "59px",
-            top: "35px",
-            left: "80px",
-          }}
-        />
+        <div className="header-inner wrap">
+          {/* Logo */}
+          <a href="#" className="logo">
+            <svg width="42" height="36" viewBox="0 0 42 36" fill="none">
+              <path d="M5.5 2C3.5 4 1.5 8 1.5 12c0 6 4 10 8 14l10 10 2-2L7.5 20C4.5 17 2.5 13.5 2.5 10c0-3 1-5.5 3-7.5" fill="#e8531f"/>
+              <path d="M14 2c-2 2-4 5-4 9 0 5 3 8 7 12l4 4 2-2-5-5C14 16 12 13 12 9c0-3 1-5 2-7" fill="#e8531f"/>
+              <path d="M22 2c-1.5 1.5-3 4-3 7 0 4 2 6 5 9l2 2 2-2-3-3c-2.5-2.5-4-5-4-7 0-2 .5-4 1-6" fill="#e8531f"/>
+            </svg>
+            <div className="logo-text">
+              VSRP
+              <small>Engineered To Perform</small>
+            </div>
+          </a>
+
+          {/* Nav */}
+          <nav className="nav">
+            <div className="nav-links">
+              <a href="#about">ABOUT</a>
+              <div className="nav-dropdown-wrap">
+                <a href="#industries" className="nav-dropdown-trigger">
+                  INDUSTRIES
+                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{marginLeft: 4}}>
+                    <path d="M1 1L5 5L9 1" />
+                  </svg>
+                </a>
+                <div className="nav-mega-dropdown">
+                  <img
+                    src="/images/Navigation menu.png"
+                    alt="Industries Menu"
+                    className="nav-mega-img"
+                  />
+                </div>
+              </div>
+              <a href="#products">PRODUCTS</a>
+              <a href="#projects">PROJECTS</a>
+              <a href="#insights">INSIGHTS</a>
+            </div>
+            <ArrowButton variant="solid" href="#contact" className="nav-contact-btn">
+              CONTACT
+            </ArrowButton>
+          </nav>
+        </div>
       </header>
 
-      {/* ==========================================
+      {/* =====================================================
           HERO
-      ========================================== */}
+      ===================================================== */}
 
       <section className="hero">
+
         <video
           className="hero-video"
           src="/images/hero.mp4"
@@ -277,6 +322,7 @@ export default function App() {
         <div className="hero-overlay" />
 
         <div className="wrap hero-inner">
+
           <div className="hero-grid">
 
             <div className="hero-col-left">
@@ -285,19 +331,26 @@ export default function App() {
                 Custom Rubber
                 <br />
                 Solutions
-                <span className="hero-dot">.</span>
+                <span className="hero-dot">
+                  .
+                </span>
               </h1>
 
               <p className="hero-desc">
-                For more than 20 years, we've helped Australian
-                businesses solve problems with engineered rubber
-                solutions. From design and tooling to manufacturing
-                and delivery, we make what you need, when you need
-                it.
+                For more than 20 years, we've helped
+                Australian businesses solve problems
+                with engineered rubber solutions. From
+                design and tooling to manufacturing and
+                delivery, we make what you need, when
+                you need it.
               </p>
 
-              <a href="#about" className="hero-scroll">
+              <a
+                href="#about"
+                className="hero-scroll"
+              >
                 <span className="hero-scroll-circle">
+
                   <svg
                     width="10"
                     height="6"
@@ -310,6 +363,7 @@ export default function App() {
                   >
                     <path d="M1 1L5 5L9 1" />
                   </svg>
+
                 </span>
 
                 <span className="hero-scroll-text">
@@ -321,12 +375,14 @@ export default function App() {
 
             <div className="hero-col-right">
 
-              <div className="hero-title hero-title-right">
+              <h2 className="hero-title hero-title-right">
                 Engineered To
                 <br />
                 Perform
-                <span className="hero-dot">.</span>
-              </div>
+                <span className="hero-dot">
+                  .
+                </span>
+              </h2>
 
               <div className="hero-ctas">
 
@@ -337,7 +393,10 @@ export default function App() {
                   DISCUSS YOUR PROJECT
                 </ArrowButton>
 
-                <a href="#about" className="hero-link">
+                <a
+                  href="#about"
+                  className="hero-link"
+                >
                   <span className="hero-link-text">
                     SEE WHAT WE DO
                   </span>
@@ -352,12 +411,13 @@ export default function App() {
             </div>
 
           </div>
+
         </div>
       </section>
 
-      {/* ==========================================
-          WHATSAPP BUTTON
-      ========================================== */}
+      {/* =====================================================
+          WHATSAPP
+      ===================================================== */}
 
       <a
         href="https://wa.me/"
@@ -376,11 +436,14 @@ export default function App() {
         </svg>
       </a>
 
-      {/* ==========================================
+      {/* =====================================================
           ABOUT / STATS
-      ========================================== */}
+      ===================================================== */}
 
-      <section className="about-section" id="about">
+      <section
+        className="about-section"
+        id="about"
+      >
 
         <div
           className="about-stripes"
@@ -406,19 +469,24 @@ export default function App() {
 
             <div className="stats-grid">
 
-              {STATS.map((s) => (
+              {STATS.map((stat) => (
                 <div
-                  key={s.label}
+                  key={stat.label}
                   className="stat-card"
                 >
+
                   <b>
-                    {s.value}
+                    {stat.value}
+
                     <span className="accent">
-                      {s.suffix}
+                      {stat.suffix}
                     </span>
                   </b>
 
-                  <span>{s.label}</span>
+                  <span>
+                    {stat.label}
+                  </span>
+
                 </div>
               ))}
 
@@ -435,16 +503,17 @@ export default function App() {
             </h3>
 
             <p>
-              Whether you need a custom seal, a specialised
-              extrusion, a bonded rubber component or a completely
-              new product, we'll work with you to find the right
+              Whether you need a custom seal, a
+              specialised extrusion, a bonded rubber
+              component or a completely new product,
+              we'll work with you to find the right
               solution.
             </p>
 
             <p>
-              We've been doing it for more than two decades,
-              helping businesses across Australia keep projects
-              moving.
+              We've been doing it for more than two
+              decades, helping businesses across
+              Australia keep projects moving.
             </p>
 
             <ArrowButton
@@ -459,9 +528,9 @@ export default function App() {
         </div>
       </section>
 
-      {/* ==========================================
+      {/* =====================================================
           MID CTA
-      ========================================== */}
+      ===================================================== */}
 
       <section className="midcta">
 
@@ -473,8 +542,9 @@ export default function App() {
         </h2>
 
         <p>
-          We work with you to design, engineer and manufacture
-          rubber solutions that meet your exact requirements.
+          We work with you to design, engineer and
+          manufacture rubber solutions that meet your
+          exact requirements.
         </p>
 
         <div className="vmark-video-container">
@@ -490,42 +560,39 @@ export default function App() {
 
         </div>
 
-        <div>
+        <a
+          href="#products"
+          className="midcta-scroll"
+        >
 
-          <a
-            href="#products"
-            className="midcta-scroll"
-          >
-            <span className="midcta-scroll-circle">
+          <span className="midcta-scroll-circle">
 
-              <svg
-                width="10"
-                height="6"
-                viewBox="0 0 10 6"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M1 1L5 5L9 1" />
-              </svg>
+            <svg
+              width="10"
+              height="6"
+              viewBox="0 0 10 6"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M1 1L5 5L9 1" />
+            </svg>
 
-            </span>
+          </span>
 
-            <span className="midcta-scroll-text">
-              SCROLL DOWN
-            </span>
+          <span className="midcta-scroll-text">
+            SCROLL DOWN
+          </span>
 
-          </a>
-
-        </div>
+        </a>
 
       </section>
 
-      {/* ==========================================
+      {/* =====================================================
           BANNER
-      ========================================== */}
+      ===================================================== */}
 
       <section className="banner">
 
@@ -560,9 +627,9 @@ export default function App() {
 
       </section>
 
-      {/* ==========================================
-          MORE THAN RUBBER COMPANY
-      ========================================== */}
+      {/* =====================================================
+          MORE THAN RUBBER
+      ===================================================== */}
 
       <section className="more-than-section">
 
@@ -579,9 +646,10 @@ export default function App() {
             </h2>
 
             <p>
-              We're engineers, problem-solvers and manufacturing
-              partners, helping businesses turn unique requirements
-              into reliable, high-performance rubber solutions.
+              We're engineers, problem-solvers and
+              manufacturing partners, helping businesses
+              turn unique requirements into reliable,
+              high-performance rubber solutions.
             </p>
 
           </div>
@@ -591,39 +659,51 @@ export default function App() {
             {[
               {
                 icon: <LightbulbIcon />,
-                title: "We Engineer Solutions.",
-                copy: "Custom products designed around your exact requirements.",
+                title:
+                  "We Engineer Solutions.",
+                copy:
+                  "Custom products designed around your exact requirements.",
               },
               {
                 icon: <TeamStarIcon />,
-                title: "We Know Rubber.",
-                copy: "Material expertise backed by 20+ years of industry experience.",
+                title:
+                  "We Know Rubber.",
+                copy:
+                  "Material expertise backed by 20+ years of industry experience.",
               },
               {
                 icon: <BadgeCheckIcon />,
-                title: "We Deliver Confidence.",
-                copy: "Quality, traceability and reliability at every stage.",
+                title:
+                  "We Deliver Confidence.",
+                copy:
+                  "Quality, traceability and reliability at every stage.",
               },
-            ].map((c, idx) => (
+            ].map((card, index) => (
 
               <div
-                key={c.title}
+                key={card.title}
                 className={`card ${
-                  idx === 0 ? "active" : ""
+                  index === 0
+                    ? "active"
+                    : ""
                 }`}
               >
 
                 <div className="card-ico">
-                  {c.icon}
+                  {card.icon}
                 </div>
 
                 <div className="card-body">
 
                   <div className="card-line" />
 
-                  <h3>{c.title}</h3>
+                  <h3>
+                    {card.title}
+                  </h3>
 
-                  <p>{c.copy}</p>
+                  <p>
+                    {card.copy}
+                  </p>
 
                 </div>
 
@@ -634,12 +714,11 @@ export default function App() {
           </div>
 
         </div>
-
       </section>
 
-      {/* ==========================================
+      {/* =====================================================
           INDUSTRIES
-      ========================================== */}
+      ===================================================== */}
 
       <section
         className="industries-section"
@@ -658,16 +737,17 @@ export default function App() {
             </h2>
 
             <p>
-              From infrastructure and mining to agriculture and
-              transport, we help businesses solve complex challenges
-              with engineered rubber solutions.
+              From infrastructure and mining to
+              agriculture and transport, we help
+              businesses solve complex challenges with
+              engineered rubber solutions.
             </p>
 
           </div>
 
           <div className="ind-grid">
 
-            {/* LEFT DARK PANEL */}
+            {/* LEFT */}
 
             <div className="ind-left-panel">
 
@@ -677,24 +757,26 @@ export default function App() {
 
               <div className="ind-vertical-list">
 
-                {INDUSTRIES.map((ind, i) => (
+                {INDUSTRIES.map(
+                  (industry, index) => (
 
-                  <button
-                    key={ind}
-                    type="button"
-                    onClick={() =>
-                      setActiveIndustry(i)
-                    }
-                    className={`ind-v-item ${
-                      activeIndustry === i
-                        ? "active"
-                        : "muted"
-                    }`}
-                  >
-                    {ind}
-                  </button>
+                    <button
+                      key={industry}
+                      type="button"
+                      onClick={() =>
+                        setActiveIndustry(index)
+                      }
+                      className={`ind-v-item ${
+                        activeIndustry === index
+                          ? "active"
+                          : "muted"
+                      }`}
+                    >
+                      {industry}
+                    </button>
 
-                ))}
+                  )
+                )}
 
               </div>
 
@@ -734,16 +816,16 @@ export default function App() {
                 <div className="ind-tabs">
 
                   {INDUSTRY_BOTTOM_TABS.map(
-                    (tab, idx) => (
+                    (tab, index) => (
 
                       <button
                         key={tab}
                         type="button"
                         onClick={() =>
-                          setActiveTab(idx)
+                          setActiveTab(index)
                         }
                         className={`ind-tab-btn ${
-                          activeTab === idx
+                          activeTab === index
                             ? "active"
                             : ""
                         }`}
@@ -760,10 +842,7 @@ export default function App() {
 
             </div>
 
-            {/* ==========================================
-                RIGHT IMAGE PANEL
-                COLOR / BLACK & WHITE AUTO CHANGE
-            ========================================== */}
+            {/* RIGHT */}
 
             <div className="ind-right-panel">
 
@@ -794,12 +873,11 @@ export default function App() {
           </div>
 
         </div>
-
       </section>
 
-      {/* ==========================================
+      {/* =====================================================
           PROCESS
-      ========================================== */}
+      ===================================================== */}
 
       <section className="process-section">
 
@@ -817,8 +895,9 @@ export default function App() {
             </h2>
 
             <p>
-              A proven process built around collaboration,
-              precision and a commitment to quality at every step.
+              A proven process built around
+              collaboration, precision and a commitment
+              to quality at every step.
             </p>
 
           </div>
@@ -827,43 +906,53 @@ export default function App() {
 
             <div className="process-steps-col">
 
-              {PROCESS_STEPS.map((s, i) => (
+              {PROCESS_STEPS.map(
+                (step, index) => (
 
-                <div
-                  key={s.num}
-                  className={`pstep ${
-                    i === 0 ? "active" : ""
-                  }`}
-                >
+                  <div
+                    key={step.num}
+                    className={`pstep ${
+                      index === 0
+                        ? "active"
+                        : ""
+                    }`}
+                  >
 
-                  <div className="pstep-left">
+                    <div className="pstep-left">
 
-                    <div
-                      className={`pstep-num ${
-                        i === 0 ? "active" : ""
-                      }`}
-                    >
-                      {s.num}
+                      <div
+                        className={`pstep-num ${
+                          index === 0
+                            ? "active"
+                            : ""
+                        }`}
+                      >
+                        {step.num}
+                      </div>
+
+                      {index !==
+                        PROCESS_STEPS.length - 1 && (
+                        <div className="pstep-line" />
+                      )}
+
                     </div>
 
-                    {i !==
-                      PROCESS_STEPS.length - 1 && (
-                      <div className="pstep-line" />
-                    )}
+                    <div className="pstep-content">
+
+                      <h3>
+                        {step.title}
+                      </h3>
+
+                      <p>
+                        {step.copy}
+                      </p>
+
+                    </div>
 
                   </div>
 
-                  <div className="pstep-content">
-
-                    <h3>{s.title}</h3>
-
-                    <p>{s.copy}</p>
-
-                  </div>
-
-                </div>
-
-              ))}
+                )
+              )}
 
             </div>
 
@@ -912,24 +1001,18 @@ export default function App() {
           </div>
 
         </div>
-
       </section>
 
-      {/* ==========================================
+      {/* =====================================================
           PROJECTS
-      ========================================== */}
+      ===================================================== */}
 
       <section
         className="wrap section"
         id="projects"
       >
 
-        <div
-          className="section-head"
-          style={{
-            alignItems: "flex-end",
-          }}
-        >
+        <div className="section-head">
 
           <h2>
             Wherever Precision Is
@@ -953,7 +1036,7 @@ export default function App() {
 
           <img
             src="/images/Group 2030.png"
-            alt="Projects"
+            alt="VSRP Projects"
             className="projects-img"
           />
 
@@ -961,9 +1044,9 @@ export default function App() {
 
       </section>
 
-      {/* ==========================================
+      {/* =====================================================
           FAQ
-      ========================================== */}
+      ===================================================== */}
 
       <section
         className="faq-section"
@@ -992,8 +1075,8 @@ export default function App() {
             </h2>
 
             <p>
-              We've heard it all. Here's everything you need to
-              know before working with us.
+              We've heard it all. Here's everything you
+              need to know before working with us.
             </p>
 
             <ArrowButton
@@ -1007,58 +1090,61 @@ export default function App() {
 
           <div className="faq-list">
 
-            {FAQS.map((f, i) => (
+            {FAQS.map((faq, index) => {
 
-              <div
-                key={f.q}
-                className={`qa ${
-                  openFaq === i
-                    ? "qa-open"
-                    : ""
-                }`}
-              >
+              const isOpen =
+                openFaq === index;
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    setOpenFaq(
-                      openFaq === i
-                        ? -1
-                        : i
-                    )
-                  }
-                  className="qa-q"
+              return (
+                <div
+                  key={faq.q}
+                  className={`qa ${
+                    isOpen
+                      ? "qa-open"
+                      : ""
+                  }`}
                 >
 
-                  {f.q}
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setOpenFaq(
+                        isOpen
+                          ? -1
+                          : index
+                      )
+                    }
+                    className="qa-q"
+                  >
 
-                  <span className="qa-sym">
-                    {openFaq === i
-                      ? "−"
-                      : "+"}
-                  </span>
+                    {faq.q}
 
-                </button>
+                    <span className="qa-sym">
+                      {isOpen
+                        ? "−"
+                        : "+"}
+                    </span>
 
-                {openFaq === i && (
-                  <p className="qa-a">
-                    {f.a}
-                  </p>
-                )}
+                  </button>
 
-              </div>
+                  {isOpen && (
+                    <p className="qa-a">
+                      {faq.a}
+                    </p>
+                  )}
 
-            ))}
+                </div>
+              );
+            })}
 
           </div>
 
         </div>
-
       </section>
 
-      {/* ==========================================
+      {/* =====================================================
           INSIGHTS
-      ========================================== */}
+      ===================================================== */}
 
       <section
         className="insights-section"
@@ -1079,9 +1165,11 @@ export default function App() {
               </h2>
 
               <p>
-                Practical advice, material expertise and engineering
+                Practical advice, material expertise and
+                engineering
                 <br />
-                knowledge to help you make informed decisions
+                knowledge to help you make informed
+                decisions
               </p>
 
             </div>
@@ -1097,75 +1185,73 @@ export default function App() {
 
           <div className="ins-grid">
 
-            {INSIGHTS.map((ins, index) => (
+            {INSIGHTS.map(
+              (insight, index) => (
 
-              <div
-                key={index}
-                className="ins-card"
-              >
+                <div
+                  key={index}
+                  className="ins-card"
+                >
 
-                <div className="ins-img">
+                  <div className="ins-img">
 
-                  <img
-                    src={ins.image}
-                    alt={ins.title}
-                  />
+                    <img
+                      src={insight.image}
+                      alt={insight.title}
+                    />
+
+                  </div>
+
+                  <div className="ins-cap">
+
+                    <h3>
+                      {insight.title}
+                    </h3>
+
+                    <a
+                      href="#insights"
+                      className="ins-link"
+                    >
+
+                      <span>
+                        VIEW DETAIL
+                      </span>
+
+                      <span className="ins-arrow">
+                        →
+                      </span>
+
+                    </a>
+
+                  </div>
 
                 </div>
 
-                <div className="ins-cap">
-
-                  <h3>{ins.title}</h3>
-
-                  <a
-                    href="#insights"
-                    className="ins-link"
-                  >
-
-                    <span>
-                      VIEW DETAIL
-                    </span>
-
-                    <span className="ins-arrow">
-                      →
-                    </span>
-
-                  </a>
-
-                </div>
-
-              </div>
-
-            ))}
+              )
+            )}
 
           </div>
 
         </div>
-
       </section>
 
-      {/* ==========================================
-          BOTTOM BANNER
-      ========================================== */}
+      {/* =====================================================
+          CONTACT / BOTTOM BANNER
+      ===================================================== */}
 
       <section
         className="banner"
+        id="contact"
         style={{
           minHeight: "608px",
           textAlign: "left",
         }}
-        id="contact"
       >
 
         <img
           src="/images/furthering quality in our industries.png"
-          alt="furthering quality in our industries"
+          alt="Furthering quality in our industries"
           className="banner-bg-img"
-          style={{
-            width: "1440px",
-            height: "608px",
-            top: "8587px",
-          }}
         />
 
         <div
@@ -1205,18 +1291,19 @@ export default function App() {
                 lineHeight: 1.6,
               }}
             >
-              Reliable and cost-effective. We support the
-              specific needs of specialised providers, plugging
-              the gaps in their projects so they can continue to
-              deliver at the highest level.
+              Reliable and cost-effective. We support
+              the specific needs of specialised
+              providers, plugging the gaps in their
+              projects so they can continue to deliver
+              at the highest level.
             </p>
 
             <ArrowButton
               variant="solid"
+              href="#contact"
               style={{
                 marginTop: 20,
               }}
-              href="#contact"
             >
               CONTACT US
             </ArrowButton>
@@ -1227,15 +1314,15 @@ export default function App() {
 
       </section>
 
-      {/* ==========================================
+      {/* =====================================================
           FOOTER
-      ========================================== */}
+      ===================================================== */}
 
       <footer className="footer">
 
         <img
           src="/images/Footer.png"
-          alt="Footer"
+          alt="VSRP Footer"
           className="footer-img"
         />
 
